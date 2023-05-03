@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -18,15 +19,25 @@ public class Aluno {
     private Curso curso;
     private List<Disciplina> disciplinasMatriculadas;
 
-    public Aluno(int codigo, String nome, String matricula, Curso curso, List<Disciplina> disciplinasMatriculadas) {
+    public Aluno() {
+        disciplinasMatriculadas = new ArrayList<>();
+    }
+
+    public void matricularDisciplina(Disciplina disciplina) {
+        if ((disciplinasMatriculadas.size() < 5) && 
+                (!disciplinasMatriculadas.contains(disciplina))) {
+            disciplinasMatriculadas.add(disciplina);
+        }else{
+            System.out.println("Disciplina não pode ser adicionada!");
+        }
+    }
+
+    public Aluno(int codigo, String nome, String matricula, Curso curso) {
         this.codigo = codigo;
         this.nome = nome;
         this.matricula = matricula;
         this.curso = curso;
-        this.disciplinasMatriculadas = disciplinasMatriculadas;
-    }
-
-    public Aluno() {
+        this.disciplinasMatriculadas = new ArrayList<>();
     }
 
     public int getCodigo() {
@@ -73,6 +84,5 @@ public class Aluno {
     public String toString() {
         return "Aluno{" + "codigo=" + codigo + ", nome=" + nome + ", matricula=" + matricula + ", curso=" + curso + ", disciplinasMatriculadas=" + disciplinasMatriculadas + '}';
     }
-    
-    
+
 }
